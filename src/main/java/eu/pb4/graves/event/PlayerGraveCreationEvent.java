@@ -1,5 +1,5 @@
 package eu.pb4.graves.event;
-
+import eu.pb4.graves.CarpetSupport;
 import net.fabricmc.fabric.api.event.Event;
 import net.fabricmc.fabric.api.event.EventFactory;
 import net.minecraft.server.network.ServerPlayerEntity;
@@ -19,6 +19,10 @@ public interface PlayerGraveCreationEvent {
                              return result;
                          }
                     }
+                    if (CarpetSupport.isPlayerFake(player))
+                    {
+                        result = CreationResult.BLOCK;
+                    }
                     return result;
                 });
 
@@ -31,7 +35,6 @@ public interface PlayerGraveCreationEvent {
         BLOCK_CLAIM(false),
         BLOCK_VOID(false),
         BLOCK_SILENT(false);
-
         private final boolean allow;
 
         CreationResult(boolean allow) {
