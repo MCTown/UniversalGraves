@@ -4,3 +4,5 @@
 Fix BUG.
 
 Stop generating graves when Carpet fake player died.
+
+You can download it from ACTION page.
