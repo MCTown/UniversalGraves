@@ -2,4 +2,5 @@
 
 # Universal Graves
 Fix BUG.
-Stop generate graves when Carpet fake player died.
+
+Stop generating graves when Carpet fake player died.
