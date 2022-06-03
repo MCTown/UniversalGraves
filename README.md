@@ -35,7 +35,7 @@ Additionally, by having `universal_graves.teleport` permission, you can teleport
 ## Configuration:
 You can find config file in `./config/universal-graves.json`.
 [Formatting uses Simplified Text for which docs you can find here](https://placeholders.pb4.eu/user/text-format/).
-Additionally, every message type has few own local variables.
+Additionally, every message type has few own local variables, which you type as `${variable}`.
 
 ```json5
 {
@@ -77,12 +77,30 @@ Additionally, every message type has few own local variables.
   "guiProtectedItem": [/*...*/],             // Items used in guis to represent protected graves, they use same syntax as /give
   "guiItem": [/*...*/],                      // Items used in guis to represent graves, they use same syntax as /give
   "[time-type]Text": "...",                  // Text used to represent time symbol
+  "fullDateFormat": "...",                   // Text used to represent full date, using standard java date format
   "worldNameOverrides": {                    // Allows to override name of the world in messages
     "world:id": "WorldName"
     /* and others */
   },
   "blacklistedWorlds": [                     // Allows to block creation of graves with worlds with matching id
+    "world:id"
     /*...*/
+  ],
+  "blacklistedAreas": {                     // Allows to block area within a world
+    "world:id2": [
+      { 
+        "x1": -10,
+        "y1": -100,
+        "z1": -20,
+        "x2": 4,
+        "y2": 256,
+        "z2": 30,
+      }
+    ]
+  },
+  "blacklistedDamageSources": [              // Allows to blacklist damage sources by name from creating graves
+    "damageSourceName"
+    /*...*/                                  // Use /graves display_damage_sources to find correct names to entry
   ],
   "tryDetectionSoulbound": true,             // Toggles automatic detection of soulbound enchantment (it's hit or miss)
   "skippedEnchantments": [                   // Allows to add own enchantments that end up being skipped from adding to grave
@@ -90,3 +108,7 @@ Additionally, every message type has few own local variables.
   ]          
 }
 ```
+
+Most grave specific messages support these variables: `player`, `protection_time`, `break_time`, `xp`, 
+`item_count`, `position`, `world`, `death_cause`, `minecraft_day`, `creation_date`, `since_creation`, 
+`id`.
